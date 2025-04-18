@@ -19,7 +19,7 @@ on:
 env:
   DOWNLOAD_BASE: https://downloads.immortalwrt.org
   VENDOR: immortalwrt
-  VERSION: 23.05.1
+ # VERSION: 23.05.1
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -39,7 +39,10 @@ jobs:
         run: |
           echo "DATE=$(date +%Y%m%d)" >> $GITHUB_ENV
           echo "DATETIME=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
-      
+          # 使用 GitHub API 获取 ImmortalWrt 最新版本号
+          LATEST_VERSION=$(curl -s https://api.github.com/repos/immortalwrt/immortalwrt/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+          echo "VERSION=$LATEST_VERSION" >> $GITHUB_ENV
+        
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
         uses: actions/checkout@v3
