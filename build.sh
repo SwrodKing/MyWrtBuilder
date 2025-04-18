@@ -109,7 +109,7 @@ PACKAGES="$PACKAGES luci-i18n-wrtbwmon-zh-cn"
 # PACKAGES="$PACKAGES netdata"
 
 # 一些自定义文件
-FILES="files"
+# FILES="files"
 
 # 禁用 openssh-server 的 sshd 服务和 docker 的 dockerd 服务以防止冲突
 DISABLED_SERVICES="sshd dockerd"
